@@ -4,13 +4,28 @@
       <div class="avatar_box">
         <img src="../assets/logo.png" alt="" />
       </div>
+      <el-form class="login-form">
+        <el-form-item>
+          <el-input v-model="username"></el-input>
+        </el-form-item>
+        <el-form-item>
+          <el-input v-model="pwd"></el-input>
+        </el-form-item>
+        <el-form-item>
+          <el-button type="primary">登录</el-button>
+          <el-button type="info">取消</el-button>
+        </el-form-item>
+      </el-form>
     </div>
   </div>
 </template>
 <script>
 export default {
   data () {
-    return {}
+    return {
+      username: '',
+      pwd: ''
+    }
   }
 }
 </script>
@@ -47,5 +62,9 @@ export default {
     border-radius: 50%;
     background: #ddd;
   }
+}
+.login-form {
+  padding: 0 20px;
+  margin-top: -20px;
 }
 </style>
