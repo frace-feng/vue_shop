@@ -2,14 +2,47 @@
   <div class="hello">
     <h1>{{ msg }}</h1>
     <ul>
-      <li>value: {{value}}</li>
-      <li>checked: {{checked}}</li>
+      <li>value: {{ value }}</li>
+      <li>checked: {{ checked }}</li>
+    </ul>
+    <ul>
+      <li><button @click="show = !show">v-show VS v-if</button></li>
+      <li v-show="show">v-show:</li>
+      <li v-if="show">v-if:</li>
+    </ul>
+    <ul>
+      <li>
+        <button @click="changePerson">
+          改变person深层值，看看deep属性能检测到什么层次
+        </button>
+      </li>
+      <li>
+        <button @click="changePerson2">
+          改变person深层值，看看deep属性能检测到什么层次
+        </button>
+      </li>
+      <li>computed:{{ computedA }}</li>
+      <li>watch:{{ watchA }}</li>
+    </ul>
+    <ul>
+      index作为key
+      <li><button @click="()=>list.splice(0,1)">移除第一个</button></li>
+      <li v-for="(i,index) in list" :key="index">item{{index}}</li>
+    </ul>
+    <ul>
+      <li>-------</li>
+      <li>
+        <button @click="() => list2.reverse()">第一个和第三个换位置了</button>
+      </li>
+      <li v-for="(i,index) in list2" :key="index">item{{ i }}</li>
     </ul>
     <ul>
 
-      <li><button @click='show=!show'>v-show VS v-if</button></li>
-      <li v-show='show'>v-show: </li>
-      <li v-if='show'>v-if: </li>
+      <li>---用id---</li>
+      <li>
+        <button @click="() => list3.reverse()">第一个和第三个换位置了</button>
+      </li>
+      <li v-for="item in list3" :key="item.id">item{{ item.num }}</li>
     </ul>
   </div>
 </template>
@@ -31,7 +64,57 @@ export default {
   },
   data () {
     return {
-      show: true
+      show: true,
+      watchA: '123',
+      person: {
+        school: {
+          name: '七宝中学',
+          address: '上海',
+          subject: {
+            names: ['数学', '英语']
+          }
+        },
+        name: 'wang',
+        age: 12
+      },
+      list: [1, 2, 3, 4],
+      list2: [1, 2, 3],
+      list3: [
+        {
+          id: 0,
+          num: 1
+        },
+        {
+          id: 1,
+          num: 2
+        },
+        {
+          id: 2,
+          num: 3
+        }
+      ]
+    }
+  },
+  computed: {
+    computedA () {
+      return this.show ? '为真' : '为假'
+    }
+  },
+  watch: {
+    person: {
+      immediate: true,
+      deep: true,
+      handler (newVal, oldVal) {
+        this.watchA = newVal
+      }
+    }
+  },
+  methods: {
+    changePerson () {
+      this.person.school.name = '新名字' + Math.random()
+    },
+    changePerson2 () {
+      this.person.school.subject.names.unshift(Math.random())
     }
   }
 }
