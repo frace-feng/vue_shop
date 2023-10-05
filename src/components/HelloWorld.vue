@@ -27,14 +27,17 @@
     <ul>
       index作为key
       <li><button @click="()=>list.splice(0,1)">移除第一个</button></li>
-      <li v-for="(i,index) in list" :key="index">item{{index}}</li>
+      <item v-for="(i,index) in list" :key="index" :value="i"></item>
+      <itemA  />
+      <li>结果是移除了最后一个</li>
     </ul>
     <ul>
-      <li>-------</li>
+      <li>---用index----</li>
       <li>
         <button @click="() => list2.reverse()">第一个和第三个换位置了</button>
       </li>
       <li v-for="(i,index) in list2" :key="index">item{{ i }}</li>
+      <li>key还是index得顺序，num值变成了逆序得，所以在上面得移除操作中出现了问题</li>
     </ul>
     <ul>
 
@@ -43,13 +46,17 @@
         <button @click="() => list3.reverse()">第一个和第三个换位置了</button>
       </li>
       <li v-for="item in list3" :key="item.id">item{{ item.num }}</li>
+      <li>key和num是一一对应着得，只是循序发生了变化</li>
     </ul>
   </div>
 </template>
 
 <script>
+import item from './item.vue'
+import itemA from './itemA.vue'
 export default {
   name: 'HelloWorld',
+  components: { item, itemA },
   model: {
     prop: 'checked',
     event: 'change'
@@ -77,19 +84,19 @@ export default {
         name: 'wang',
         age: 12
       },
-      list: [1, 2, 3, 4],
-      list2: [1, 2, 3],
+      list: ['A', 'B', 'C', 'D'],
+      list2: ['A', 'B', 'C'],
       list3: [
         {
-          id: 0,
+          id: 177,
           num: 1
         },
         {
-          id: 1,
+          id: 178,
           num: 2
         },
         {
-          id: 2,
+          id: 179,
           num: 3
         }
       ]

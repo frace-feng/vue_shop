@@ -39,16 +39,16 @@ export default {
 }
 .login_box {
   background: #fff;
-  height: 300px;
-  width: 450px;
+  height: 250px;
+  width: 350px;
   // position: absolute;
   // left: 50%;
   // top: 50%;
   // transform: translate(-50%, -50%);
 }
 .avatar_box {
-  height: 130px;
-  width: 130px;
+  height: 60px;
+  width: 60px;
   border: 1px solid #eee;
   border-radius: 50%;
   padding: 10px;
