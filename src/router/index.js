@@ -28,6 +28,12 @@ const routes = [
     name: 'home',
     component: () =>
       import(/* webpackChunkName: "home" */ '../views/Home.vue')
+  },
+  {
+    path: '/jsx',
+    name: 'jsx',
+    component: () =>
+      import(/* webpackChunkName: "jsx" */ '../views/JsxDemo.vue')
   }
 ]
 
