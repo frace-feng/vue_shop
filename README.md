@@ -1,5 +1,14 @@
 # vue_shop
 
+## 引入jsx
+
+安装依赖：yarn add @vue/babel-preset-jsx @vue/babel-helper-vue-jsx-merge-props
+配置 .babelrc(babel.config.js) ：
+ 增加：['@vue/babel-preset-jsx',
+  {
+  'injectH': false
+  }]
+
 ## 描述
 
 element按需引入
